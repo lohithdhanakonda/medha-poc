@@ -4,7 +4,7 @@ import './Header.scss'
 
 export const Header = () => (
   <div>
-    <h1>Cadbarri Project</h1>
+    <h1>Mp3 Music player</h1>
   </div>
 )
 
