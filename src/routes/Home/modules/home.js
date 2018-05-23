@@ -6,28 +6,37 @@ const STORE_FILES = 'STORE_FILES'
 // Actions
 // ------------------------------------
 export function FilesUploaded(files) {
-  // debugger
-  // var file = files[0];
-  //   var reader = new FileReader();
-  //   file.end = file.size;
-  //   debugger
-  //   var reader = new FileReader();
-  //  var resbaseurl= reader.readAsDataURL(file);
+  return (dispatch) => {
+    var songfiles = []
+    files.map(file => {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      songfiles.push({ name: file.name, songData: reader.result })
+    })
+    dispatch({
+      type: STORE_FILES,
+      songfiles
+    })
+  }
+
   //  var song= new Audio(resbaseurl);
 
-  //   debugger
 }
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-
+  [STORE_FILES]: (state, action) => {
+    return Object.assign({}, state, { songfiles: action.songfiles })
+  }
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = {
+  songslist: [{}]
+}
 export default function homeReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
