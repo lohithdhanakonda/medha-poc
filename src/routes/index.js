@@ -1,10 +1,14 @@
 import CoreLayout from '../layouts/CoreLayout'
-import ReportsDashboard from './ReportsDashboard'
+import MusicPlayer from './MusicPlayer'
+import Home from './Home'
 
 export const createRoutes = (store) => ({
   path: '/',
   component: CoreLayout,
-  childRoutes: [ReportsDashboard(store)]
+  indexRoute: Home(store),
+  childRoutes: [
+      MusicPlayer(store)
+    ]
 })
 
 export default createRoutes
